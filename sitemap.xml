@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://jixinliang.github.io/about/</loc>
+    <lastmod>2020-12-02T22:33:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/archives/</loc>
+    <lastmod>2020-12-02T22:28:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/search/</loc>
+    <lastmod>2020-12-02T22:26:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/categories/</loc>
+    <lastmod>2020-12-02T22:10:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/tags/Git/</loc>
+    <lastmod>2020-12-02T22:10:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/categories/Git/</loc>
+    <lastmod>2020-12-02T22:10:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/posts/git-basement/</loc>
+    <lastmod>2020-12-02T22:10:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/</loc>
+    <lastmod>2020-12-02T22:10:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/posts/</loc>
+    <lastmod>2020-12-02T22:10:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/tags/</loc>
+    <lastmod>2020-12-02T22:10:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/tags/Linux/</loc>
+    <lastmod>2020-12-02T22:07:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/categories/Linux/</loc>
+    <lastmod>2020-12-02T22:07:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/posts/linux-CMD/</loc>
+    <lastmod>2020-12-02T22:07:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/tags/Math/</loc>
+    <lastmod>2020-12-02T14:07:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/categories/Math/</loc>
+    <lastmod>2020-12-02T14:07:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jixinliang.github.io/posts/my-second-post/</loc>
+    <lastmod>2020-12-02T14:07:01+08:00</lastmod>
+  </url>
+  
+</urlset>

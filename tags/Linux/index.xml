@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Jixinliang&#39;s Blog</title>
+    <link>https://jixinliang.github.io/tags/Linux/</link>
+    <description>Recent content in Linux on Jixinliang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 02 Dec 2020 22:07:01 +0800</lastBuildDate><atom:link href="https://jixinliang.github.io/tags/Linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux CMD</title>
+      <link>https://jixinliang.github.io/posts/linux-CMD/</link>
+      <pubDate>Wed, 02 Dec 2020 22:07:01 +0800</pubDate>
+      
+      <guid>https://jixinliang.github.io/posts/linux-CMD/</guid>
+      <description>Linux 常用命令排序版 A 1 2 3 4 5 6 7 8 9 10 11 12 alias -- Define or display aliases awk -- pattern scanning and processing language -F --field-separator $0 is the whole record $1 is the first record $2 is the second record $NF the last field of line NF The number of fields in the current input record NR The total number of input records seen so far /regular expression/ B 1 2 3 4 5 6 7 8 9 basename -- strip directory and suffix from filenames basename OPTION... NAME... -a --multiple support multiple arguments and treat each as a NAME -s --suffix=SUFFIX remove a trailing SUFFIX bc -- An arbitrary precision calculator language -q --quiet Do not print the normal GNU bc welcome blkid -- locate/print block device attributes</description>
+    </item>
+    
+  </channel>
+</rss>

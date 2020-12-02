@@ -1,0 +1,2581 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>Linux CMD | Jixinliang&#39;s Blog</title>
+    <meta property="og:title" content="Linux CMD - Jixinliang&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-12-02T22:07:01&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-12-02T22:07:01&#43;08:00'>
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="Linux CMD">
+        
+    <meta name="author" content="Jixinlinag">
+    <meta property="og:url" content="https://jixinliang.github.io/posts/linux-CMD/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+    
+    
+    
+    
+        <link rel="stylesheet" href='/css/sidebar_menu.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://jixinliang.github.io">
+                        Jixinliang&#39;s Blog
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://jixinliang.github.io">首页</a>
+                    
+                    <a  href="https://jixinliang.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://jixinliang.github.io/books/" title="书籍">书籍</a>
+                    
+                    <a  href="https://jixinliang.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#a">A</a></li>
+    <li><a href="#b">B</a></li>
+    <li><a href="#c">C</a></li>
+    <li><a href="#d">D</a></li>
+    <li><a href="#e">E</a></li>
+    <li><a href="#f">F</a></li>
+    <li><a href="#g">G</a></li>
+    <li><a href="#h">H</a></li>
+    <li><a href="#i">I</a></li>
+    <li><a href="#j">J</a></li>
+    <li><a href="#k">K</a></li>
+    <li><a href="#l">L</a></li>
+    <li><a href="#m">M</a></li>
+    <li><a href="#n">N</a></li>
+    <li><a href="#o">O</a></li>
+    <li><a href="#p">P</a></li>
+    <li><a href="#q">Q</a></li>
+    <li><a href="#r">R</a></li>
+    <li><a href="#s">S</a></li>
+    <li><a href="#t">T</a></li>
+    <li><a href="#u">U</a></li>
+    <li><a href="#v">V</a></li>
+    <li><a href="#w">W</a></li>
+    <li><a href="#x">X</a></li>
+    <li><a href="#y">Y</a></li>
+    <li><a href="#z">Z</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+
+    <article class="post">
+        <header>
+            <h1 class="post-title">Linux CMD</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年12月2日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='/categories/Linux'>Linux</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="linux-常用命令排序版">Linux 常用命令排序版</h1>
+<h2 id="a">A</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span>	-- Define or display aliases
+
+awk -- pattern scanning and processing language
+    -F  --field-separator
+    <span style="color:#008080">$0</span> is the whole record
+    <span style="color:#008080">$1</span> is the first record  
+    <span style="color:#008080">$2</span> is the second record
+    <span style="color:#008080">$NF</span>	the last field of line
+    NF  The number of fields in  the  current input record
+    NR  The  total  number  of  input records seen so far
+    /regular expression/
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="b">B</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">basename    -- strip directory and suffix from filenames 
+	basename OPTION... NAME...
+    -a  --multiple	support multiple arguments and treat each as a NAME
+    -s  --suffix<span style="color:#000;font-weight:bold">=</span>SUFFIX		remove a trailing SUFFIX
+    
+bc  -- An arbitrary precision calculator language
+	-q  --quiet		Do not print the normal GNU bc welcome
+
+blkid   -- locate/print block device attributes
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="c">C</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">95
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">cd</span>  -- Change the current directory to dir
+    <span style="color:#0086b3">cd</span>  <span style="color:#000;font-weight:bold">[</span>dir<span style="color:#000;font-weight:bold">]</span>
+    .   -- current directory
+    ..  -- parent directory
+    -   -- previous directory; is equivalent to <span style="color:#008080">$OLDPWD</span> 
+    ~   -- /home/user directory  | -- /root directory
+    /   -- / directory
+
+cat  -- concatenate files and print on the standard output 
+	cat <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... <span style="color:#000;font-weight:bold">[</span>FILE<span style="color:#000;font-weight:bold">]</span>...
+	-A   --show-all  equivalent to -vET
+	-b  --number-nonblank
+	-E  --show-ends		display $ at end of each line
+	-n  -- number
+	-s  --squeeze-blank		suppress repeated empty output lines
+	-T  --show-tabs	display TAB characters as ^I
+
+cp   -- copy files and directories
+    cp <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... SOURCE... DIRECTORY
+    -a  -- archive      same as -dR --preserve<span style="color:#000;font-weight:bold">=</span>all
+    -d  same as --no-dereference --preserve<span style="color:#000;font-weight:bold">=</span>links
+    -f  -- force
+    -i  -- interactive   prompt before overwrite
+    -p  same as --preserve<span style="color:#000;font-weight:bold">=</span>mode,ownership,timestamps
+    -r  -- recursive    copy directories recursively
+    -u  -- update
+    -a &lt;<span style="color:#000;font-weight:bold">=</span>&gt; -dpr
+    -H ?
+
+chkconfig    -- updates and queries runlevel information <span style="color:#000;font-weight:bold">for</span> system services
+    --add name
+    --del name
+    --list name
+    --level levels
+
+cut  - remove sections from each line of files
+    cut OPTION... <span style="color:#000;font-weight:bold">[</span>FILE<span style="color:#000;font-weight:bold">]</span>...
+    -b  --bytes<span style="color:#000;font-weight:bold">=</span>LIST
+    -c  --characters<span style="color:#000;font-weight:bold">=</span>LIST
+    -d  --delimiter<span style="color:#000;font-weight:bold">=</span>DELIM
+    -f  --fields<span style="color:#000;font-weight:bold">=</span>LIST
+
+chmod - change file mode bits
+    chmod <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... MODE<span style="color:#000;font-weight:bold">[</span>,MODE<span style="color:#000;font-weight:bold">]</span>... FILE...
+    -R  --recursive    change files and directories recursively
+
+chown - change file owner and group
+    chown <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... <span style="color:#000;font-weight:bold">[</span>OWNER<span style="color:#000;font-weight:bold">][</span>:<span style="color:#000;font-weight:bold">[</span>GROUP<span style="color:#000;font-weight:bold">]]</span> FILE...
+    -h  --no-dereference
+    -R  --recursive  operate on files and directories recursively
+
+chattr   -- change file attributes on a Linux file system The format of a 	 
+	symbolic mode is +-<span style="color:#000;font-weight:bold">=[</span>aAcCdDeijsStTu<span style="color:#000;font-weight:bold">]</span>
+    a   --append  only
+    i   --immutable
+    -R  --Recursively
+    
+crontab  -- maintains crontab files <span style="color:#000;font-weight:bold">for</span> individual users
+    -l	--Displays the current crontab on standard output
+    -e	--Edits the current crontab
+    -r	--Removes the current crontab
+    -u	--Appends the name of the user whose crontab is to  be modified
+
+chage	-- change user password expiry information
+    chage <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span> LOGIN
+    -d  --lastday LAST_DAY
+    -E  --expiredate
+    Use chage -E <span style="color:#099">0</span> user <span style="color:#0086b3">command</span> instead <span style="color:#000;font-weight:bold">for</span> full account locking
+    Passing the number -1 as the EXPIRE_DATE will remove an
+    account expiration date
+    -l  --list
+    -m  --mindays MIN_DAYS
+    -M  --maxdays MAX_DAYS
+
+chpasswd	-- update passwords in batch mode
+
+comm - compare two sorted files line by line
+    -1	suppress column <span style="color:#099">1</span> <span style="color:#000;font-weight:bold">(</span>lines unique to FILE1<span style="color:#000;font-weight:bold">)</span>
+    -2	suppress column <span style="color:#099">2</span> <span style="color:#000;font-weight:bold">(</span>lines unique to FILE2<span style="color:#000;font-weight:bold">)</span>
+    -3	suppress column <span style="color:#099">3</span> <span style="color:#000;font-weight:bold">(</span>lines that appear in both files<span style="color:#000;font-weight:bold">)</span>
+
+curl	-- transfer a URL
+    -I  --head <span style="color:#000;font-weight:bold">(</span>HTTP/FTP/FILE<span style="color:#000;font-weight:bold">)</span> Fetch  the  HTTP-header  only
+    -s  --silent
+    -o  --output &lt;file&gt;
+    -w  --write-out &lt;format&gt;
+    --connect-timeout &lt;seconds&gt;
+    -m  --max-time &lt;seconds&gt;    allow the  whole operation to take.
+        
+createrepo  -- Create repomd <span style="color:#000;font-weight:bold">(</span>xml-rpm-metadata<span style="color:#000;font-weight:bold">)</span> repository
+    -d  --database
+    -p?
+    -o?
+    --update
+    --basedir
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="d">D</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">date -- print or <span style="color:#0086b3">set</span> the system date and <span style="color:#0086b3">time</span>
+    -R  --rfc-2822  output date and <span style="color:#0086b3">time</span> in RFC <span style="color:#099">2822</span>  format.   
+    Example: Mon, <span style="color:#099">07</span> Aug <span style="color:#099">2006</span> 12:34:56 -0600
+    -s  --set<span style="color:#000;font-weight:bold">=</span>STRING
+    -d  --date<span style="color:#000;font-weight:bold">=</span>STRING
+    %F     full date; same as %Y-%m-%d
+    %T     time; same as %H:%M:%S
+
+dmesg    -- print or control the kernel ring buffer
+    dmesg <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span>
+    -C  --clear
+    -c  --read-clear
+    -H  --human
+    -l  --level list
+    -L  --color     Colorize important messages
+
+dd   -- convert and copy a file
+    <span style="color:#000;font-weight:bold">if</span><span style="color:#000;font-weight:bold">=</span>FILE     --read from FILE instead of stdin
+    <span style="color:#008080">of</span><span style="color:#000;font-weight:bold">=</span>FILE     --write to FILE instead of stdout
+    <span style="color:#008080">bs</span><span style="color:#000;font-weight:bold">=</span>BYTES    --read and write up to BYTES bytes at a <span style="color:#0086b3">time</span>
+    <span style="color:#008080">count</span><span style="color:#000;font-weight:bold">=</span>N     --copy only N input blocks
+
+df   -- report file system disk space usage
+    df <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... <span style="color:#000;font-weight:bold">[</span>FILE<span style="color:#000;font-weight:bold">]</span>...
+    -h  --human-readable
+    -i  --inodes
+    -T  --print-type
+    
+du   -- estimate file space usage
+    Summarize disk usage of each FILE, recursively <span style="color:#000;font-weight:bold">for</span> directo-ries
+    du <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... <span style="color:#000;font-weight:bold">[</span>FILE<span style="color:#000;font-weight:bold">]</span>...
+    -a  --all
+    -B  --block-size<span style="color:#000;font-weight:bold">=</span>SIZE
+    -d  --max-depth<span style="color:#000;font-weight:bold">=</span>N
+    -h  --human-readable
+    -s  --summarize
+    
+dirname -- strip last component from file name
+
+diff -- compare files line by line
+    -c, -C NUM  --context<span style="color:#000;font-weight:bold">[=</span>NUM<span style="color:#000;font-weight:bold">]</span>
+    -u, -U NUM  --unified<span style="color:#000;font-weight:bold">[=</span>NUM<span style="color:#000;font-weight:bold">]</span>
+    -a  --text
+    -r  --recursive
+    -N  --new-file
+
+dos2unix	-- DOS/Mac to Unix and vice versa text file format converter
+    
+dig	-- DNS lookup utility
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="e">E</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">echo</span> - display a line of text
+    <span style="color:#0086b3">echo</span> <span style="color:#000;font-weight:bold">[</span>SHORT-OPTION<span style="color:#000;font-weight:bold">]</span>... <span style="color:#000;font-weight:bold">[</span>STRING<span style="color:#000;font-weight:bold">]</span>...
+    -n     <span style="color:#000;font-weight:bold">do</span> not output the trailing newline
+    -e     <span style="color:#0086b3">enable</span> interpretation of backslash escapes
+    If -e is in effect, the following sequences are recognized:
+    <span style="color:#d14">\\</span>     backslash
+    <span style="color:#d14">\a</span>     alert <span style="color:#000;font-weight:bold">(</span>BEL<span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#d14">\b</span>     backspace
+    <span style="color:#d14">\f</span>     form feed
+    <span style="color:#d14">\n</span>     new line
+    <span style="color:#d14">\r</span>     carriage <span style="color:#000;font-weight:bold">return</span>
+    <span style="color:#d14">\t</span>     horizontal tab
+    <span style="color:#d14">\v</span>     vertical tab
+
+<span style="color:#0086b3">printf</span> - format and print data
+
+ethtool -- query or control network driver and hardware settings ethtool devname
+    
+exports -- NFS server <span style="color:#0086b3">export</span> table
+    
+exportfs    -- maintain table of exported NFS file systems
+    -a  --Export or unexport all directories
+    -r  --Reexport all  directories
+    -v  --Be verbose
+    -o  --options
+    
+expr	-- evaluate expressions
+	expr EXPRESSION
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="f">F</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">find -- search <span style="color:#000;font-weight:bold">for</span> files in a directory hierarchy
+    -type c  File is of <span style="color:#0086b3">type</span> c:
+    b	block <span style="color:#000;font-weight:bold">(</span>buffered<span style="color:#000;font-weight:bold">)</span> special
+    c	character <span style="color:#000;font-weight:bold">(</span>unbuffered<span style="color:#000;font-weight:bold">)</span> special
+    d	directory
+    p	named pipe <span style="color:#000;font-weight:bold">(</span>FIFO<span style="color:#000;font-weight:bold">)</span>
+    f	regular file
+    l	symbolic link
+    s	socket
+    D	door <span style="color:#000;font-weight:bold">(</span>Solaris<span style="color:#000;font-weight:bold">)</span>
+
+    -mtime n
+    File<span style="color:#d14">&#39;s data was last modified n*24 hours  ago.   See
+</span><span style="color:#d14">    the  comments  for -atime to understand how rounding
+</span><span style="color:#d14">    affects  the  interpretation  of  file  modification
+</span><span style="color:#d14">    times.
+</span><span style="color:#d14">    n   -- on n day
+</span><span style="color:#d14">    +n  -- n days before
+</span><span style="color:#d14">    -n  -- recent n days 
+</span><span style="color:#d14">
+</span><span style="color:#d14">	-mmin n    File&#39;</span>s data was last modified n minutes ago.
+
+	-size n<span style="color:#000;font-weight:bold">[</span>cwbkMG<span style="color:#000;font-weight:bold">]</span>     
+	--File uses n units of space
+	-print  --print the full file name on the standard output,allowed by a 	
+	newline
+	-print0 --True; print the full file name on the standard  out-
+	put,  followed  by  a null character
+    -maxdepth levels
+    -inum n     --File has inode number n
+    -name pattern   --The  metacharacters <span style="color:#000;font-weight:bold">(</span><span style="color:#d14">`</span>*<span style="color:#d14">&#39;, `?&#39;</span>, and <span style="color:#d14">`</span><span style="color:#000;font-weight:bold">[]</span><span style="color:#a61717;background-color:#e3d2d2">&#39;</span><span style="color:#000;font-weight:bold">)</span>
+    -perm   --mode
+    ! expr  --True  <span style="color:#000;font-weight:bold">if</span>  expr  is  false.  This character will also
+     usually need protection from interpretation by the shell.
+     -not expr  --Same as ! expr, but not POSIX compliant.
+     -o  --or
+     -a  --and
+     -delete    --Delete files
+     -newer file --File was modified more recently than file
+
+file -- determine file <span style="color:#0086b3">type</span>
+
+free -- Display amount of free and used memory in the system
+    free <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span>
+    -h  --human
+
+fdisk   -- manipulate disk partition table
+    -l  --List  the partition tables <span style="color:#000;font-weight:bold">for</span> the specified devices and <span style="color:#000;font-weight:bold">then</span> exit.
+    -s partition... Print the size <span style="color:#000;font-weight:bold">(</span>in blocks<span style="color:#000;font-weight:bold">)</span> of each given partition
+
+fsck    -- check and repair a Linux filesystem
+	-A  --all
+
+fold    -- wrap each input line to fit in specified width
+    -w  --width<span style="color:#000;font-weight:bold">=</span>WIDTH
+    -s  --spaces    <span style="color:#0086b3">break</span> at spaces
+    
+fmt	-- simple optimal text formatter
+    -c  --crown-margin   preserve indentation of first two lines
+    -w  --width<span style="color:#000;font-weight:bold">=</span>WIDTH
+    -p  --prefix<span style="color:#000;font-weight:bold">=</span>STRING
+    reformat only lines beginning with STRING, reattaching the prefix to 
+    reformatted lines
+
+ftp -- Internet file transfer program
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="g">G</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grep, egrep, fgrep  -- print lines matching a pattern
+    <span style="color:#000;font-weight:bold">[</span>OPTIONS<span style="color:#000;font-weight:bold">]</span> PATTERN <span style="color:#000;font-weight:bold">[</span>FILE...<span style="color:#000;font-weight:bold">]</span>
+
+    Matching Control:
+    -c  --count
+    -i  --ignore-case
+    -o  --only-matching
+    -h  --no-filename
+    -l  --files-with-matches
+    -L  --files-without-match
+    -v  --invert-match
+    -w  --word-regexp
+    Select only those lines containing matches that form
+    whole  words
+    -x  --line-regexp
+
+    Context Line Control:
+    -A  --after-context<span style="color:#000;font-weight:bold">=</span>NUM
+    Print NUM lines of trailing context after matching lines.
+    -B  --before-context<span style="color:#000;font-weight:bold">=</span>NUM
+    Print NUM lines of trailing context before matching lines.
+    -C  --context<span style="color:#000;font-weight:bold">=</span>NUM
+    Print NUM lines of output context. 
+    Places a linecontaining a group separator 
+    between contiguous groups of matches
+
+    <span style="color:#000;font-weight:bold">[[</span>:alpha:<span style="color:#000;font-weight:bold">]]</span>
+
+gzip, gunzip, zcat - compress or expand files
+    gzip <span style="color:#000;font-weight:bold">[</span> -acdfhlLnNrtvV19 <span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>-S suffix<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span> name ...  <span style="color:#000;font-weight:bold">]</span>
+    gunzip <span style="color:#000;font-weight:bold">[</span> -acfhlLnNrtvV <span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>-S suffix<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span> name ...  <span style="color:#000;font-weight:bold">]</span>
+    -c --stdout --to-stdout
+    -d --decompress --uncompress
+    -f --force
+    -l --list
+    -r --recursive
+    -t --test   Test the integrity of a compressed file.
+    -v --verbose
+    
+groupadd	-- create a new group
+	-g  --gid GID
+    
+groups  -- print the groups a user is in
+    
+groff   -- front-end <span style="color:#000;font-weight:bold">for</span> the groff document formatting system
+    
+gpasswd -- administer /etc/group and /etc/gshadow
+	-d  --delete user
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="h">H</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">head -- output the first part of files Print the first <span style="color:#099">10</span> lines of each FILE 
+	to standard output.
+    head <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... <span style="color:#000;font-weight:bold">[</span>FILE<span style="color:#000;font-weight:bold">]</span>...
+    -n  -- lines
+    -q  --quiet, --silent
+    never print headers giving file names
+    -v  --verbose
+    always print headers giving file names
+
+hostname -- show or <span style="color:#0086b3">set</span> the system<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>s host name
+    -I  --all-ip-addresses
+    -s  --short     short host name
+
+<span style="color:#0086b3">help</span> -- Display information about <span style="color:#0086b3">builtin</span> commands
+    --help  -- Display Usage Information
+    -m  --display usage in pseudo-manpage format
+
+<span style="color:#0086b3">history</span>  -- display the <span style="color:#0086b3">command</span> <span style="color:#0086b3">history</span> list with line numbers
+    <span style="color:#0086b3">history</span> -c
+    <span style="color:#0086b3">history</span> -d offset
+    -c  --Clear the <span style="color:#0086b3">history</span> list by deleting all the entries
+    -d  --offset Delete the <span style="color:#0086b3">history</span> entry at position offset
+    
+htpasswd    -- Manage user files <span style="color:#000;font-weight:bold">for</span> basic authentication
+    -c  --Create  the  passwdfile
+    -b  --Use batch mode; get the password from the <span style="color:#0086b3">command</span> line
+    rather than prompting <span style="color:#000;font-weight:bold">for</span> it
+    -D  --Delete  user
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="i">I</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ip  -- show / manipulate routing, devices, policy routing and tunnels
+    ip addr --Shows addresses assigned to all network interfaces
+    ip route
+
+ifup    -- bring a network interface up
+	ifup CONFIG
+
+ifdown  -- take a network interface down
+	ifdown CONFIG
+    
+id - print real and effective user and group IDs
+    
+inotifywait -- <span style="color:#0086b3">wait</span> <span style="color:#000;font-weight:bold">for</span> changes to files using inotify
+    -m  --monitor
+    -d  --daemon
+    -r  --recursive
+    -e &lt;event&gt;  --event &lt;event&gt;
+    create  --file or directory created within watched directory
+    delete	--file or directory deleted within watched directory
+    close_write	file or directory closed, after being opened in
+    writeable mode
+    -q  --quiet    	Print less <span style="color:#000;font-weight:bold">(</span>only print events<span style="color:#000;font-weight:bold">)</span>
+    --timefmt &lt;fmt&gt;
+    --format &lt;fmt&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="j">J</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">jobs</span>    --Display status of jobs.
+    -l  --lists process IDs in addition to the normal information
+    -p	--lists process IDs only
+
+join    -- join lines of two files on a common field
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="k">K</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kpartx - Create device maps from partition tables
+    -a     Add partition mappings
+    -d     Delete partition mappings
+    -l     List partition mappings that would be added -a
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="l">L</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls  -- list directory contents
+    ls <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... <span style="color:#000;font-weight:bold">[</span>FILE<span style="color:#000;font-weight:bold">]</span>...
+    -a  -- all
+    -d  -- directory
+    -h  -- human-readable
+    -i  -- inode    print the index number of each file
+    -l  -- use a long listing format
+    -F  -- classify  append indicator <span style="color:#000;font-weight:bold">(</span>one of */<span style="color:#000;font-weight:bold">=</span>&gt;@|<span style="color:#000;font-weight:bold">)</span> to entries
+    -p  -- indicator-style<span style="color:#000;font-weight:bold">=</span>slash  append / indicator to directories
+    -r  -- reverse
+    -t  -- sort by modification time, newest first
+    --time-style<span style="color:#000;font-weight:bold">=</span>long-iso
+
+less - opposite of more
+	-N or --LINE-NUMBERS
+
+lsblk    -- list block devices
+    lsblk <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>device...<span style="color:#000;font-weight:bold">]</span>
+    -f  --fs    Output info about filesystems
+    -m  --perms Output info about device owner, group and mode
+    -i  --ascii Use ASCII characters <span style="color:#000;font-weight:bold">for</span> tree formatting
+    -o  --output list
+
+last, lastb  -- show listing of last logged in users
+	-F     Print full login and <span style="color:#0086b3">logout</span> <span style="color:#0086b3">times</span> and dates
+
+lastlog  -- reports the most recent login of all users or of
+    a given user
+    -u  --user LOGIN
+
+lsof -- list open files
+    -i <span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span>  selects the listing of files any of whose Internet
+    address matches the address specified in i
+
+ln - make links between files
+    -s  --symbolic
+    -d  -F, --directory
+    allow the superuser to attempt to hard link directo-
+    ries  <span style="color:#000;font-weight:bold">(</span>note:  will  probably  fail  due  to   system restrictions, even 
+    <span style="color:#000;font-weight:bold">for</span> the superuser<span style="color:#000;font-weight:bold">)</span>
+
+lsattr   --  list  file attributes on a Linux second extended file system
+    -R  --Recursively
+    
+lsmod   -- Show the status of modules in the Linux Kernel
+    
+losetup -- <span style="color:#0086b3">set</span> up and control loop devices
+    -a  --all
+    -f  --find
+    -P  --partscan  force kernel to scan partition table on newly   
+    created loop device
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="m">M</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -- make directories  
+    mkdir <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... DIRECTORY...
+    Create the DIRECTORY<span style="color:#000;font-weight:bold">(</span>ies<span style="color:#000;font-weight:bold">)</span>, <span style="color:#000;font-weight:bold">if</span> they <span style="color:#000;font-weight:bold">do</span> not already exist
+    -p  -- parents
+    no error <span style="color:#000;font-weight:bold">if</span> existing, make parent directories as needed
+    -v  --verbose
+
+mv  -- move <span style="color:#000;font-weight:bold">(</span>rename<span style="color:#000;font-weight:bold">)</span> files
+    mv <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... SOURCE... DIRECTORY
+    -f  --force     <span style="color:#000;font-weight:bold">do</span> not prompt before overwriting
+    -i  --interactive   prompt before overwrite
+    -t  --target-directory<span style="color:#000;font-weight:bold">=</span>DIRECTORY
+    move all SOURCE arguments into DIRECTORY
+    -u  --update
+
+man  -- an interface to the on-line reference manuals
+    <span style="color:#099">1</span>   Executable programs or shell commands
+    <span style="color:#099">5</span>   File formats and conventions eg /etc/passwd
+    <span style="color:#099">8</span>   System administration commands <span style="color:#000;font-weight:bold">(</span>usually only <span style="color:#000;font-weight:bold">for</span> root<span style="color:#000;font-weight:bold">)</span>
+
+md5sum  -- compute and check MD5 message digest
+    -c  --check
+
+mkfs    -- build a Linux filesystem
+    -t  --type <span style="color:#0086b3">type</span>
+
+mount   -- mount a filesystem
+    mount --target /mountpoint
+    -a  --all
+    -t  --types vfstype
+    -o  --options opts
+    remount  --Attempt to remount an already-mounted filesystem
+    ro  --Mount the filesystem read-only.
+    rw  --Mount the filesystem read-write.
+
+mkswap  -- <span style="color:#0086b3">set</span> up a Linux swap area
+
+make	-- GNU make utility to maintain groups of programs
+	-j <span style="color:#000;font-weight:bold">[</span>jobs<span style="color:#000;font-weight:bold">]</span>  --jobs<span style="color:#000;font-weight:bold">[=</span>jobs<span style="color:#000;font-weight:bold">]</span>
+
+modinfo -- Show information about a Linux Kernel module
+
+modprobe    -- Add and remove modules from the Linux Kernel
+    -r  --remove
+    -v  --verbose
+
+mysqldump - a database backup program
+    -A  --all-databases
+    -B  --databases Dump several databases
+    -F  --flush-logs
+    -x  --lock-all-tables
+    -R  --routines
+    -E  --events    Include Event Scheduler events <span style="color:#000;font-weight:bold">for</span> the dumped   
+    databases in theoutput.
+
+
+mysql  -- the MySQL command-line client
+    -e statement    --execute<span style="color:#000;font-weight:bold">=</span>statement
+    -S socket
+    -h host
+    
+mysqld_safe - MySQL server startup script
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="n">N</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">netstat
+    netstat -lntup |grep ssh
+    -a  --all
+    -e  --extend
+    -i  --interfaces
+    -l  --listening     Show  only  listening  sockets
+    -n  --numeric
+    -t  --tcp
+    -u  --udp
+    -p  --program   Show  the  PID
+    -r  --route     Display the kernel routing tables
+        
+
+nl   -- number lines of files
+
+ntpdate -- <span style="color:#0086b3">set</span> the date and <span style="color:#0086b3">time</span> via NTP
+    ntpdate http://ntp4.aliyun.com
+
+nslookup    -- query Internet name servers interactively
+
+nmap    -- Network exploration tool and security / port scanner
+    -p  port ranges <span style="color:#000;font-weight:bold">(</span>Only scan specified ports<span style="color:#000;font-weight:bold">)</span>
+    -sn <span style="color:#000;font-weight:bold">(</span>No port scan<span style="color:#000;font-weight:bold">)</span>
+    -PS port list <span style="color:#000;font-weight:bold">(</span>TCP SYN Ping<span style="color:#000;font-weight:bold">)</span>
+    -sS <span style="color:#000;font-weight:bold">(</span>TCP SYN scan<span style="color:#000;font-weight:bold">)</span>
+
+nc<span style="color:#000;font-weight:bold">(</span>ncat<span style="color:#000;font-weight:bold">)</span>    -- Concatenate and redirect sockets
+    -w  --wait &lt;time&gt;
+
+newusers    -- update and create new users in batch
+    username:passwd:uid:gid:full name:home_dir:shell
+
+nginx   -- HTTP and reverse proxy server, mail proxy server
+    -s signal   Send a signal to the master process.  The argument
+    signal can be one of: stop, quit, reopen, reload. 
+    -t  --Do not run, just <span style="color:#0086b3">test</span> the configuration file.
+    
+nohup   -- run a <span style="color:#0086b3">command</span> immune to hangups, with output to a non-tty
+    
+nslookup - query Internet name servers interactively
+    nslookup <span style="color:#000;font-weight:bold">[</span>-option<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>name | -<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>server<span style="color:#000;font-weight:bold">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="o">O</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">od   -- dump files in octal and other formats
+    -a  --same as -t a, <span style="color:#000;font-weight:bold">select</span> named characters, ignoring high-order bit
+    -x  --same as -t x2, <span style="color:#000;font-weight:bold">select</span> hexadecimal 2-byte units
+    -t  --format<span style="color:#000;font-weight:bold">=</span>TYPE
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="p">P</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">pwd</span> -- Print the name of the current working directory
+    -- Print the absolute pathname of the current working directory
+    -L  --logical	use  PWD  from environment, even <span style="color:#000;font-weight:bold">if</span> it contains sym-links
+    -P  --physical
+    avoid all symlinks
+
+ps -- report a snapshot of the current processes
+    ps <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span>
+    ps -ef
+    To see every process on the system using standard syntax
+    -e  --Select all processes
+    -f  --Do full-format listing.
+    -a  --Select all processes except both session leaders
+    -u  --userlist
+    -C  --cmdlist   Select by <span style="color:#0086b3">command</span> name
+    --no-headers    Print no header line at all
+    
+passwd - update user<span style="color:#d14">&#39;s authentication tokens
+</span><span style="color:#d14">    --stdin
+</span><span style="color:#d14">    This  option  is used to indicate that passwd should read the new password 
+</span><span style="color:#d14">    from standard input, which can be a pipe
+</span><span style="color:#d14">    -d  --delete
+</span><span style="color:#d14">    -l  --lock
+</span><span style="color:#d14">    -u  --unlock
+</span><span style="color:#d14">    -n  --minimum DAYS
+</span><span style="color:#d14">    -x  --maximum DAYS
+</span><span style="color:#d14">    -w  --warning DAYS
+</span><span style="color:#d14">    -i  --inactive DAYS
+</span><span style="color:#d14">    -S  --status
+</span><span style="color:#d14">
+</span><span style="color:#d14">paste   -- merge lines of files
+</span><span style="color:#d14">    -d  --delimiters=LIST	reuse characters from LIST instead of TABs
+</span><span style="color:#d14">    -s  --serial	paste one file at a time instead of in parallel
+</span><span style="color:#d14">
+</span><span style="color:#d14">partprobe   -- inform the OS of partition table changes
+</span><span style="color:#d14">    -d  --Don&#39;</span>t update the kernel
+    -s  --Show a summary of devices and their partitions
+
+parted  -- a partition manipulation program
+
+pstree  -- display a tree of processes
+	-h  --Highlight the current  process  and  its  ancestors
+
+printenv -- print all or part of environment
+
+patch - apply a diff file to an original
+
+pr  -- convert text files <span style="color:#000;font-weight:bold">for</span> printing
+    -l  --length<span style="color:#000;font-weight:bold">=</span>PAGE_LENGTH
+    -w  --width<span style="color:#000;font-weight:bold">=</span>PAGE_WIDTH
+
+<span style="color:#0086b3">printf</span>  -- format and print data
+
+ping    -- send ICMP ECHO_REQUEST to network hosts
+    -c  --count
+    -i  --interval
+    -s  --packetsize
+    -W  --timeout
+
+pkill - look up or signal processes based on name and other attributes
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="q">Q</h2>
+<h2 id="r">R</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rm  -- remove files or directories
+    rm <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... FILE...
+    -f  -- force
+    -r  -- recursive
+    -I  -- prompt  once  before removing more than three files,
+    or when removing recursively
+
+rpm -- RPM Package Manager
+    -a  --all
+    -c  --configfiles
+    -q  --query
+    -i  --info
+    -i  --install
+    -e  --erase
+    -U  --upgrade
+    -l  --list
+    -f  --file FILE
+    -h  --hash
+    --reinstall
+    -v  --verbose
+    -d  --docfiles
+    -p, --package
+
+route    -- show / manipulate the IP routing table
+    -n  --numeric
+
+readlink  - print resolved symbolic links or canonical file names
+
+rename  --Rename file
+    rename <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span> expression replacement file...  
+    -v  --verbose    explain what is being <span style="color:#000;font-weight:bold">done</span>
+    -s  --symlink    act on symlink target
+
+rev -- reverse lines of a file or files
+    
+rsync  - a fast, versatile, remote <span style="color:#000;font-weight:bold">(</span>and <span style="color:#0086b3">local</span><span style="color:#000;font-weight:bold">)</span> file-copying tool
+    -a  --archive
+    -z  --compress
+    -v  --verbose
+    -u  --update
+    --delete
+    -e  --rsh<span style="color:#000;font-weight:bold">=</span>COMMAND   specify the remote shell to use
+    -r  --recursive     recurse into directories
+    -t  --times         preserve modification <span style="color:#0086b3">times</span>
+    -o  --owner         preserve owner <span style="color:#000;font-weight:bold">(</span>super-user only<span style="color:#000;font-weight:bold">)</span>
+    -p  --perms         preserve permissions
+    -P                  same as --partial --progress
+    -g  --group         preserve group
+    -R  --relative      use relative path names
+    --bwlimit<span style="color:#000;font-weight:bold">=</span>RATE      limit socket I/O bandwidth
+    --password-file<span style="color:#000;font-weight:bold">=</span>FILE    <span style="color:#0086b3">read</span> daemon-access password from FILE
+    --config<span style="color:#000;font-weight:bold">=</span>FILE           specify alternate rsyncd.conf file
+    --exclude<span style="color:#000;font-weight:bold">=</span>PATTERN       exclude files matching PATTERN
+    --exclude-from<span style="color:#000;font-weight:bold">=</span>FILE     <span style="color:#0086b3">read</span> exclude patterns from FILE
+    --delete                delete extraneous files from dest <span style="color:#0086b3">dirs</span>
+    --partial               keep partially transferred files
+    --timeout<span style="color:#000;font-weight:bold">=</span>SECONDS       <span style="color:#0086b3">set</span> I/O timeout in seconds
+
+<span style="color:#0086b3">read</span>    --Read a line from the standard input and split it into fields
+    -e  --use Readline to obtain the line in an interactive shell
+    -i text --Use TEXT as the initial text <span style="color:#000;font-weight:bold">for</span> Readline
+    -p prompt	output the string PROMPT without a trailing newline before attempting 
+    to <span style="color:#0086b3">read</span>
+    -s  --Silent  mode. If  input  is coming from a terminal,characters are not 
+    echoed.
+    -t seconds Timeout. Terminate input after seconds. <span style="color:#0086b3">read</span> returns 
+    a non-zero <span style="color:#0086b3">exit</span> status <span style="color:#000;font-weight:bold">if</span> an input <span style="color:#0086b3">times</span> out. 
+    
+rpcbind -- universal addresses to RPC program number mapper
+
+rpcinfo -- report RPC information
+	-p  --Probe rpcbind on host
+    
+restorecon  -- restore file<span style="color:#000;font-weight:bold">(</span>s<span style="color:#000;font-weight:bold">)</span> default SELinux security contexts
+    -R  --recursively
+    -v  --verbosity
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="s">S</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">seq  -- print a sequence of numbers
+    seq <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... LAST
+    seq <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... FIRST LAST
+    seq <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... FIRST INCREMENT LAST
+    -f  --format<span style="color:#000;font-weight:bold">=</span>FORMAT
+    FIRST, INCREMENT, and LAST
+    %g
+    -s  --separator<span style="color:#000;font-weight:bold">=</span>STRING
+    use STRING to separate numbers <span style="color:#000;font-weight:bold">(</span>default: <span style="color:#d14">\n</span><span style="color:#000;font-weight:bold">)</span>
+    -w  --equal-width
+    equalize width by padding with leading zeroes
+         
+
+sed  -- stream editor <span style="color:#000;font-weight:bold">for</span> filtering and transforming text
+    sed  <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>...  <span style="color:#000;font-weight:bold">{</span>script-only-if-no-other-script<span style="color:#000;font-weight:bold">}</span>  <span style="color:#000;font-weight:bold">[</span>input-
+    file<span style="color:#000;font-weight:bold">]</span>...
+
+    -n, -- quiet, --silent suppress automatic printing of pattern space
+    p   -- Print the current pattern space.
+    l   -- List out line in a <span style="color:#d14">``</span>visually unambiguous<span style="color:#d14">&#39;&#39;</span> form
+
+    -e script   --expression<span style="color:#000;font-weight:bold">=</span>script
+    --add the script to the commands to be executed
+
+    -i  -- in-place      -- edit files in place
+    -r  --regexp-extended
+    -f  script-file, --file<span style="color:#000;font-weight:bold">=</span>script-file
+
+    a text   --Append text, which has each embedded newline 
+    preceded by a backslash
+    i text   --Insert text, which has each  embedded  newline preceded by abackslash
+    d   -- Delete pattern space.  Start next cycle
+    c text   --Replace the selected lines with text, which has each embedded newline 
+    preceded by a backslash.
+
+    s/regexp/replacement/g      -- search-and-replace   -- global
+    --Attempt to match regexp against the  pattern  space
+    g   -- Copy/append hold space to pattern space.
+
+    The replacement may contain the special character &amp; to  refer to that 
+    portion of the pattern space which matched, and the special 
+    escapes <span style="color:#d14">\1</span> through <span style="color:#d14">\9</span> to refer to the 
+    corresponding matching sub-expressions in the regexp y/source/dest/
+    Transliterate  the  characters  in the pattern space which appear 
+    in <span style="color:#0086b3">source</span> to the corresponding  character in dest.
+
+stat -- display file or file system status
+    stat <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... FILE...
+    -f  --file-system
+    -c  --format<span style="color:#000;font-weight:bold">=</span>FORMAT
+    %a     access rights in octal
+    %B     the size in bytes of each block reported by %b
+    %m     mount point
+    %x     <span style="color:#0086b3">time</span> of last access, human-readable
+
+systemctl    -- Control the systemd system and service manager
+    -t  --type<span style="color:#000;font-weight:bold">=</span>
+    -a  --all
+    -l  --full  :<span style="color:#000;font-weight:bold">=</span>--list
+    Unit Commands
+    list-units <span style="color:#000;font-weight:bold">[</span>PATTERN...<span style="color:#000;font-weight:bold">]</span>
+    start PATTERN...
+    stop PATTERN...
+    reload PATTERN...
+    restart PATTERN...
+    try-restart PATTERN...
+    <span style="color:#0086b3">kill</span> PATTERN...
+    is-active PATTERN...
+    status <span style="color:#000;font-weight:bold">[</span>PATTERN...|PID...<span style="color:#000;font-weight:bold">]]</span>
+    show <span style="color:#000;font-weight:bold">[</span>PATTERN...|JOB...<span style="color:#000;font-weight:bold">]</span>
+    Unit File Commands
+    list-unit-files <span style="color:#000;font-weight:bold">[</span>PATTERN...<span style="color:#000;font-weight:bold">]</span>
+    <span style="color:#0086b3">enable</span> NAME...
+    disable NAME...
+    reenable NAME...
+    preset NAME...
+    preset-all
+    is-enabled NAME...
+    Checks whether any of the specified unit files are
+    enabled <span style="color:#000;font-weight:bold">(</span>as with <span style="color:#0086b3">enable</span><span style="color:#000;font-weight:bold">)</span>.
+
+su  -- run a <span style="color:#0086b3">command</span> with substitute user and group ID
+    -  -l  --login
+    -c <span style="color:#0086b3">command</span>  --command<span style="color:#000;font-weight:bold">=</span><span style="color:#0086b3">command</span>
+    
+sudo, sudoedit   -- execute a <span style="color:#0086b3">command</span> as another user
+    -l  --list
+    -K  --remove-timestamp
+    -u  user  --user<span style="color:#000;font-weight:bold">=</span>user
+    -v  --validate
+
+sort    -- sort lines of text files
+    -h  --human-numeric-sort
+    -f  --ignore-case
+    -k  --key<span style="color:#000;font-weight:bold">=</span>KEYDEF
+    -n  --numeric-sort
+    -t  --field-separator<span style="color:#000;font-weight:bold">=</span>SEP
+    -r  --reverse
+    -u  --unique
+    
+ss  -- another utility to investigate sockets
+    ss  is  used  to  dump socket statistics. It allows showing
+    information similar to netstat.
+    -l  --listening
+    -n  --numeric
+    -t  --tcp
+    -u  --udp
+    -p  --processes
+    -i  --info
+    
+	swapon, swapoff  -- enable/disable devices and files <span style="color:#000;font-weight:bold">for</span> paging and swapping
+    
+split   -- split a file into pieces
+    -b  --bytes<span style="color:#000;font-weight:bold">=</span>SIZE
+    -l  --lines<span style="color:#000;font-weight:bold">=</span>NUMBER  put NUMBER lines per output file
+    -d  --numeric-suffixes<span style="color:#000;font-weight:bold">[=</span>FROM<span style="color:#000;font-weight:bold">]</span>
+    -a  --suffix-length<span style="color:#000;font-weight:bold">=</span>N
+    
+ssh -- OpenSSH SSH client <span style="color:#000;font-weight:bold">(</span>remote login program<span style="color:#000;font-weight:bold">)</span>
+    -p  --port
+    -t  --Force pseudo-terminal allocation
+
+scp -- secure copy <span style="color:#000;font-weight:bold">(</span>remote file copy program<span style="color:#000;font-weight:bold">)</span>
+    -P  --port
+    -p  --Preserves
+    -r  --Recursively
+    -l  --limit
+
+showmount   -- show mount information <span style="color:#000;font-weight:bold">for</span> an NFS server
+	-e or --exports     Show the NFS server<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>s <span style="color:#0086b3">export</span> list
+    
+sftp    -- secure file transfer program
+    -o  --ssh_option
+    port
+    
+ssh-keygen -- authentication key generation, management and conver-sion
+    -t dsa  --Specifies the <span style="color:#0086b3">type</span> of key to create.
+    -P  --passphrase
+    -f  --filename
+    -N  --new_passphrase
+    
+ssh-copy-id -- use locally available keys to authorise logins on a  
+    remote machine
+    -i  --identity_file
+    -f  --Forced mode
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="t">T</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">touch -- change file timestamps
+    touch <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... FILE...
+    -a  --change only the access <span style="color:#0086b3">time</span>
+    -d  --date<span style="color:#000;font-weight:bold">=</span>STRING
+    -m  --change only the modification <span style="color:#0086b3">time</span>
+    -r  --reference<span style="color:#000;font-weight:bold">=</span>FILE
+    use this file<span style="color:#d14">&#39;s times instead of current time
+</span><span style="color:#d14">    -t  --STAMP  use [[CC]YY]MMDDhhmm[.ss] instead of current time
+</span><span style="color:#d14">
+</span><span style="color:#d14">tail -- output the last part of files
+</span><span style="color:#d14">    Print the last 10 lines of each FILE to standard output.
+</span><span style="color:#d14">    tail [OPTION]... [FILE]...
+</span><span style="color:#d14">    -f   --follow[={name|descriptor}]  &lt;=&gt; tailf
+</span><span style="color:#d14">    -F   --same as --follow=name --retry
+</span><span style="color:#d14">    -n   -- lines
+</span><span style="color:#d14">
+</span><span style="color:#d14">tree -- list contents of directories in a tree-like format
+</span><span style="color:#d14">    -d  --List directories only
+</span><span style="color:#d14">    -L  --level    Max display depth of the directory tree
+</span><span style="color:#d14">    -p  --Print the file type and permissions  for  each  file
+</span><span style="color:#d14">    (as per ls -l)
+</span><span style="color:#d14">    -D  --Print  the  date of the last modification time
+</span><span style="color:#d14">    -i  --Don&#39;</span>t print indentation lines
+    -f  --Prints the full path prefix <span style="color:#000;font-weight:bold">for</span> each file
+    -F  Append a <span style="color:#d14">`</span>/<span style="color:#d14">&#39; for directories, a `=&#39;</span> <span style="color:#000;font-weight:bold">for</span> socket
+    files, a <span style="color:#d14">`</span>*<span style="color:#d14">&#39; for executable files, a `&gt;&#39;</span> <span style="color:#000;font-weight:bold">for</span> doors
+    <span style="color:#000;font-weight:bold">(</span>Solaris<span style="color:#000;font-weight:bold">)</span> and a <span style="color:#d14">`</span>|<span style="color:#d14">&#39; for FIFO&#39;</span>s, as per ls -F
+
+tailf    -- follow the growth of a log file
+    tailf <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span> file
+    -n  --lines<span style="color:#000;font-weight:bold">=</span>N, -N
+
+tar - manual page <span style="color:#000;font-weight:bold">for</span> tar 1.26
+    -c  --create
+    -z  --gzip
+    -f  --file<span style="color:#000;font-weight:bold">=</span>ARCHIVE
+    -t  --list
+    -x  --extract, --get
+    -v  --verbose
+    -C  --directory<span style="color:#000;font-weight:bold">=</span>DIR
+    -j  --bzip2
+    -r  --append    append files to the end of an archive
+    -X  --exclude-from<span style="color:#000;font-weight:bold">=</span>FILE
+    -T  --files-from<span style="color:#000;font-weight:bold">=</span>FILE   get names to extract or create from FILE
+    -N  --newer<span style="color:#000;font-weight:bold">=</span>DATE-OR-FILE
+    -h  --dereference   follow  symlinks; archive and  dump the files they point to
+    -p  --preserve-permissions, --same-permissions
+    --exclude<span style="color:#000;font-weight:bold">=</span>PATTERN   exclude files, given as a PATTERN
+    
+<span style="color:#0086b3">type</span>	-- Display information about <span style="color:#0086b3">command</span> <span style="color:#0086b3">type</span>
+
+tr   - translate or delete characters
+    -d  --delete
+    -s  --squeeze-repeats
+    
+tac -- concatenate and print files in reverse
+
+top -- display Linux processes
+
+tee -- <span style="color:#0086b3">read</span> from standard input and write to standard output and files
+-a  --append    append to the given FILEs, <span style="color:#000;font-weight:bold">do</span> not overwrite
+    
+tbl -- format tables <span style="color:#000;font-weight:bold">for</span> troff
+
+<span style="color:#0086b3">time</span>    -- Time the execution of a script
+
+traceroute  -- print the route packets trace to network host
+	-n  Do not try to map IP addresses to host names when displaying them.
+
+tcpdump -- dump traffic on a network
+    -c  --count
+    -i  --interface
+    -S  --absolute-tcp-sequence-numbers
+    -t  --Do not print a timestamp on each dump line.
+    -n  --Do not convert host addresses to names.  This can be used  to
+    avoid DNS lookups.
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="u">U</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">unalias</span>  -- Remove each name from the list of defined aliases
+
+uname  -- print system information
+    uname <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>...
+    -a  --all
+    -s  --kernel-name
+    -r  --kernel-release
+    -m  --machine   print the machine hardware name
+    -n  --nodename
+    -o  --operating-system
+
+useradd -- create a new user or update default new user
+    information
+    useradd <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span> LOGIN
+    -c  --comment COMMENT
+    -d  --home-dir HOME_DIR
+    -e  --expiredate EXPIRE_DATE
+    -D  --defaults
+    -f  --inactive INACTIVE
+    -g  --gid GROUP
+    -G  --groups GROUP1<span style="color:#000;font-weight:bold">[</span>,GROUP2,...<span style="color:#000;font-weight:bold">[</span>,GROUPN<span style="color:#000;font-weight:bold">]]]</span>
+    -m  --create-home
+    -M  --no-create-home
+    -s  --shell SHELL
+    -u  --uid UID
+
+userdel -- delete a user account and related files
+    userdel <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span> LOGIN
+    -f  --force
+    -r  --remove
+
+usermod - modify a user account
+    -g  --gid GROUP
+    -G  --groups
+    -L  --lock
+    -U  --unlock
+
+users    -- print the user names of users currently logged in
+    to the current host
+    
+uniq    -- report or omit repeated lines
+    -c  --count
+    -d  --repeated
+    only print duplicate lines, one <span style="color:#000;font-weight:bold">for</span> each group
+    -u  --unique
+    
+<span style="color:#0086b3">umask</span>   --Display or <span style="color:#0086b3">set</span> file mode mask.
+    -S	makes the output symbolic; otherwise an octal number is output
+    
+umount  -- unmount file systems
+    -f  --force
+    -l   --lazy
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="v">V</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">visudo  -- edit the sudoers file
+	-c  --check     Enable check-only mode
+
+vmstat  -- Report virtual memory statistics
+
+vimdiff  -  edit two, three or four versions of a file with Vim and show differences
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="w">W</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">which -- shows the full path of <span style="color:#000;font-weight:bold">(</span>shell<span style="color:#000;font-weight:bold">)</span> commands
+	which <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>--<span style="color:#000;font-weight:bold">]</span> programname <span style="color:#000;font-weight:bold">[</span>...<span style="color:#000;font-weight:bold">]</span>
+
+whereis -- locate the binary, source, and manual page files <span style="color:#000;font-weight:bold">for</span> a <span style="color:#0086b3">command</span>
+    -b     Search only <span style="color:#000;font-weight:bold">for</span> binaries
+
+wc -- print newline, word, and byte counts <span style="color:#000;font-weight:bold">for</span> each file
+    wc <span style="color:#000;font-weight:bold">[</span>OPTION<span style="color:#000;font-weight:bold">]</span>... <span style="color:#000;font-weight:bold">[</span>FILE<span style="color:#000;font-weight:bold">]</span>...
+    -c  --bytes     print the byte counts
+    -m  --chars     print the character counts
+    -l  --lines     print the newline counts
+    -L  --max-line-length   print the length of the longest line
+    -w  --words     print the word counts
+    
+w   -- Show who is logged on and what they are doing
+    
+who  -- show who is logged on
+
+wget    -- The non-interactive network downloader
+    --limit-rate<span style="color:#000;font-weight:bold">=</span>amount
+    -i file --input-file<span style="color:#000;font-weight:bold">=</span>file
+    -q  --quiet Turn off Wget<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>s output
+    -t number   --tries<span style="color:#000;font-weight:bold">=</span>number
+    -T seconds  --timeout<span style="color:#000;font-weight:bold">=</span>seconds
+    --spider    Wget will behave as a Web spider
+    -F  --force-html
+        
+whatis  -- Display One-line Manual Page Descriptions
+
+watch   -- execute a program periodically, showing output fullscreen
+	-n  --interval seconds
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="x">X</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xargs -- build and execute <span style="color:#0086b3">command</span> lines from standard input
+    -n  -- max-args<span style="color:#000;font-weight:bold">=</span>max-args Use at most max-args arguments per <span style="color:#0086b3">command</span> line.
+    -i <span style="color:#000;font-weight:bold">[</span>replace-str<span style="color:#000;font-weight:bold">]</span>  --replace<span style="color:#000;font-weight:bold">[=</span>replace-str<span style="color:#000;font-weight:bold">]</span>
+    -0, --null  Input items are terminated by a null  character  in-stead of by 
+    whitespace, and the quotes and backslash are not special
+
+xfs_info - expand an XFS filesystem
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="y">Y</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum -- Yellowdog Updater Modified
+    yum <span style="color:#000;font-weight:bold">[</span>options<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>command<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>package ...<span style="color:#000;font-weight:bold">]</span>
+    yum  is  an interactive, rpm based, package manager.
+
+    -y   --assume yes
+
+    install package1 <span style="color:#000;font-weight:bold">[</span>package2<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>...<span style="color:#000;font-weight:bold">]</span>
+    update <span style="color:#000;font-weight:bold">[</span>package1<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>package2<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>...<span style="color:#000;font-weight:bold">]</span>
+    update-to <span style="color:#000;font-weight:bold">[</span>package1<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>package2<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>...<span style="color:#000;font-weight:bold">]</span>
+    check-update
+    upgrade <span style="color:#000;font-weight:bold">[</span>package1<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>package2<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>...<span style="color:#000;font-weight:bold">]</span>
+    remove | erase package1 <span style="color:#000;font-weight:bold">[</span>package2<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">[</span>...<span style="color:#000;font-weight:bold">]</span>
+    list <span style="color:#000;font-weight:bold">[</span>...<span style="color:#000;font-weight:bold">]</span>
+    info <span style="color:#000;font-weight:bold">[</span>...<span style="color:#000;font-weight:bold">]</span>
+
+    group  install
+    group  update
+    group  list
+    group remove
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="z">Z</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">zless   -- file perusal filter <span style="color:#000;font-weight:bold">for</span> crt viewing of compressed text
+
+systemctl
+localectl
+timedatectl
+hostnamectl
+journalctl - Query the systemd journal
+
+usage <span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    cat <span style="color:#d14">&lt;&lt;- EOF 
+</span><span style="color:#d14">        Usage: sh $0 
+</span><span style="color:#d14">    EOF</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">((</span><span style="color:#008080">$#</span> !<span style="color:#000;font-weight:bold">=</span> 3<span style="color:#000;font-weight:bold">))</span>; <span style="color:#000;font-weight:bold">then</span> 
+    usage 
+    <span style="color:#0086b3">exit</span> <span style="color:#099">1</span> 
+<span style="color:#000;font-weight:bold">fi</span>
+
+<span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">((</span><span style="color:#008080">i</span> <span style="color:#000;font-weight:bold">=</span> 0; i &lt;<span style="color:#000;font-weight:bold">=</span> 20; ++i <span style="color:#000;font-weight:bold">))</span>; <span style="color:#000;font-weight:bold">do</span>
+
+Error: This <span style="color:#0086b3">command</span> has to be run under the root user.
+</code></pre></td></tr></table>
+</div>
+</div>
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/my-second-post/">My Second Post</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='/tags/Linux'>Linux</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2020 <a href="https://jixinliang.github.io">Jixinliang&#39;s Blog By Jixinlinag</a>.
+        本站博客未经授权禁止转载. Powered by <a href="https://gohugo.io/" target="_black" rel="nofollow"><span class="badge-value bg-blue">Hugo</span></a>
+        & <a href="https://github.com/flysnow-org/maupassant-hugo" target="_black"><span class="badge-value bg-yellowgreen">Maupassant</span></a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/post_category.js'></script>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://jixinliang.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://jixinliang.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://jixinliang.github.io/posts/git-basement/" title="Git的基础操作">Git的基础操作</a>
+    </li>
+    
+    <li>
+        <a href="https://jixinliang.github.io/posts/linux-CMD/" title="Linux CMD">Linux CMD</a>
+    </li>
+    
+    <li>
+        <a href="https://jixinliang.github.io/posts/my-second-post/" title="My Second Post">My Second Post</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="https://jixinliang.github.io/categories/Git/">Git (1)</a></li>
+    
+    <li><a href="https://jixinliang.github.io/categories/Linux/">Linux (1)</a></li>
+    
+    <li><a href="https://jixinliang.github.io/categories/Math/">Math (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="https://jixinliang.github.io/tags/Git/">Git</a>
+    
+    <a href="https://jixinliang.github.io/tags/Linux/">Linux</a>
+    
+    <a href="https://jixinliang.github.io/tags/Math/">Math</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://jixinliang.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

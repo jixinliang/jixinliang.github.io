@@ -1,0 +1,1113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+
+    <title>Git的基础操作 | Jixinliang&#39;s Blog</title>
+    <meta property="og:title" content="Git的基础操作 - Jixinliang&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-12-02T22:10:01&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-12-02T22:10:01&#43;08:00'>
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="Git的基础操作">
+        
+    <meta name="author" content="Jixinlinag">
+    <meta property="og:url" content="https://jixinliang.github.io/posts/git-basement/">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+    
+    
+    
+    
+        <link rel="stylesheet" href='/css/sidebar_menu.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://jixinliang.github.io">
+                        Jixinliang&#39;s Blog
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://jixinliang.github.io">首页</a>
+                    
+                    <a  href="https://jixinliang.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://jixinliang.github.io/books/" title="书籍">书籍</a>
+                    
+                    <a  href="https://jixinliang.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-git的基础操作">1. git的基础操作</a></li>
+    <li><a href="#2-git的分支">2. git的分支</a>
+      <ul>
+        <li><a href="#21-代码合并案例">2.1 代码合并案例</a></li>
+        <li><a href="#22-冲突合并案例">2.2 冲突合并案例</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-git的标签">3. git的标签</a></li>
+    <li><a href="#4-github的使用">4. GitHub的使用</a></li>
+    <li><a href="#gitlab">gitlab</a></li>
+    <li><a href="#jenkins的使用">jenkins的使用</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+
+    <article class="post">
+        <header>
+            <h1 class="post-title">Git的基础操作</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年12月2日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='/categories/Git'>Git</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="1-git的基础操作">1. git的基础操作</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git status
+
+git confit --list
+
+git config --global color.ui always
+git config --global user.name string
+git config --global user.email string
+
+git init
+git add .
+git status
+git rm --cached &lt;file&gt;...
+
+<span style="color:#998;font-style:italic"># 同时删除文件和临时缓存中的文件</span>
+git rm -f a
+
+<span style="color:#998;font-style:italic"># 从缓存区提交到本地仓库</span>
+git commit -m <span style="color:#d14">&#34;add file a and b&#34;</span>
+
+<span style="color:#998;font-style:italic"># 这样并没有把临时缓存区的a删除(还很麻烦)</span>
+mv a a.txt
+git status
+
+<span style="color:#998;font-style:italic"># 先删除缓存再添加文件</span>
+git rm --cache a
+git add a.txt
+
+<span style="color:#998;font-style:italic"># 利用git mv一步到位的修改文件</span>
+git mv a.txt a
+
+<span style="color:#998;font-style:italic"># 文件对比</span>
+<span style="color:#0086b3">echo</span> aa &gt; a
+git diff a
+
+<span style="color:#998;font-style:italic"># 对比工作目录(不跟文件)</span>
+git diff
+
+<span style="color:#998;font-style:italic"># 对比暂存区与工作目录</span>
+git diff --cached
+
+<span style="color:#998;font-style:italic"># 这样工作目录和暂存区的数据就都相同了</span>
+git add .
+git commit -m <span style="color:#d14">&#34;add new data to a&#34;</span>
+
+<span style="color:#998;font-style:italic"># 缩写形式(添加又提交)</span>
+git commit -am <span style="color:#d14">&#34;add new data to a&#34;</span>
+
+<span style="color:#998;font-style:italic"># 查看历史提交</span>
+git log
+<span style="color:#998;font-style:italic"># 只看描述信息</span>
+git log --oneline
+<span style="color:#998;font-style:italic"># </span>
+git log --oneline -p
+
+<span style="color:#998;font-style:italic"># 最近一次提交</span>
+git log -1
+
+<span style="color:#998;font-style:italic"># 数据回滚</span>
+git reset --hard 431cc79
+
+<span style="color:#998;font-style:italic"># 查看所有改动log(回滚后的前的log)</span>
+git reflog
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2-git的分支">2. git的分支</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#998;font-style:italic"># 查看分支的指向</span>
+git log --oneline --decorate 
+
+<span style="color:#998;font-style:italic"># 创建分支</span>
+git branch testing
+
+<span style="color:#998;font-style:italic"># 查看分支</span>
+git branch
+
+<span style="color:#998;font-style:italic"># 切换分支</span>
+git checkout testing 
+
+<span style="color:#998;font-style:italic"># 创建并切换</span>
+git checkout -b testing
+
+<span style="color:#998;font-style:italic"># 删除分支</span>
+git branch -d testing
+
+<span style="color:#998;font-style:italic"># 合并分支</span>
+git merge testing -m <span style="color:#d14">&#34;merge testing branch&#34;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="21-代码合并案例">2.1 代码合并案例</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">案例
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># touch aa bb cc</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git add aa</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git commit -m &#34;add aa&#34;</span>
+<span style="color:#000;font-weight:bold">[</span>master 7c7ba9e<span style="color:#000;font-weight:bold">]</span> add aa
+ <span style="color:#099">1</span> file changed, <span style="color:#099">0</span> insertions<span style="color:#000;font-weight:bold">(</span>+<span style="color:#000;font-weight:bold">)</span>, <span style="color:#099">0</span> deletions<span style="color:#000;font-weight:bold">(</span>-<span style="color:#000;font-weight:bold">)</span>
+ create mode <span style="color:#099">100644</span> aa
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git add bb</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git commit -m &#34;add bb&#34;</span>
+<span style="color:#000;font-weight:bold">[</span>master 208d4da<span style="color:#000;font-weight:bold">]</span> add bb
+ <span style="color:#099">1</span> file changed, <span style="color:#099">0</span> insertions<span style="color:#000;font-weight:bold">(</span>+<span style="color:#000;font-weight:bold">)</span>, <span style="color:#099">0</span> deletions<span style="color:#000;font-weight:bold">(</span>-<span style="color:#000;font-weight:bold">)</span>
+ create mode <span style="color:#099">100644</span> bb
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git add cc</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git commit -m &#34;add cc&#34;</span>
+<span style="color:#000;font-weight:bold">[</span>master 1ef8187<span style="color:#000;font-weight:bold">]</span> add cc
+ <span style="color:#099">1</span> file changed, <span style="color:#099">0</span> insertions<span style="color:#000;font-weight:bold">(</span>+<span style="color:#000;font-weight:bold">)</span>, <span style="color:#099">0</span> deletions<span style="color:#000;font-weight:bold">(</span>-<span style="color:#000;font-weight:bold">)</span>
+ create mode <span style="color:#099">100644</span> cc
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git log --oneline --decorate -1</span>
+1ef8187 <span style="color:#000;font-weight:bold">(</span>HEAD -&gt; master<span style="color:#000;font-weight:bold">)</span> add cc
+<span style="color:#998;font-style:italic"># 新分支</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git checkout -b testing</span>
+Switched to a new branch <span style="color:#d14">&#39;testing&#39;</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git branch </span>
+  master
+* testing
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git log --oneline --decorate -1</span>
+1ef8187 <span style="color:#000;font-weight:bold">(</span>HEAD -&gt; testing, master<span style="color:#000;font-weight:bold">)</span> add cc	<span style="color:#998;font-style:italic"># 此处指针指向testing和master</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># touch test-dd</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git add .</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git commit -m &#34;add new file test-dd&#34;</span>
+<span style="color:#000;font-weight:bold">[</span>testing 3e53e8f<span style="color:#000;font-weight:bold">]</span> add new file test-dd
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git log --oneline --decorate -1</span>
+3e53e8f <span style="color:#000;font-weight:bold">(</span>HEAD -&gt; testing<span style="color:#000;font-weight:bold">)</span> add new file test-dd	<span style="color:#998;font-style:italic"># 此处指针指向testing</span>
+<span style="color:#998;font-style:italic"># 两边分支互补影响</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git checkout master </span>
+Switched to branch <span style="color:#d14">&#39;master&#39;</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git branch </span>
+* master
+  testing
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># ll</span>
+<span style="color:#998;font-style:italic"># 合并分支(一定要在主分支上合并)</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git merge testing -m &#34;merge testing branch&#34;</span>
+Merge made by the <span style="color:#d14">&#39;recursive&#39;</span> strategy.
+ test-dd | <span style="color:#099">0</span>
+ <span style="color:#099">1</span> file changed, <span style="color:#099">0</span> insertions<span style="color:#000;font-weight:bold">(</span>+<span style="color:#000;font-weight:bold">)</span>, <span style="color:#099">0</span> deletions<span style="color:#000;font-weight:bold">(</span>-<span style="color:#000;font-weight:bold">)</span>
+ create mode <span style="color:#099">100644</span> test-dd
+<span style="color:#998;font-style:italic"># 合并完数据后删除小分支就好(重新创建分支会更快些)</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git branch -d testing </span>
+Deleted branch testing <span style="color:#000;font-weight:bold">(</span>was 3e53e8f<span style="color:#000;font-weight:bold">)</span>.
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="22-冲突合并案例">2.2 冲突合并案例</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#998;font-style:italic"># 添加了testing分支,又返回主分支</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git checkout -b testing</span>
+Switched to a new branch <span style="color:#d14">&#39;testing&#39;</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git checkout master </span>
+Switched to branch <span style="color:#d14">&#39;master&#39;</span>
+<span style="color:#998;font-style:italic"># 主分支添加数据</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># echo master &gt;&gt; aa</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git commit -am &#34;add data to file aa&#34;</span>
+<span style="color:#000;font-weight:bold">[</span>master d012719<span style="color:#000;font-weight:bold">]</span> add data to file aa
+ <span style="color:#099">1</span> file changed, <span style="color:#099">1</span> insertion<span style="color:#000;font-weight:bold">(</span>+<span style="color:#000;font-weight:bold">)</span>
+ <span style="color:#998;font-style:italic"># 切换到testing支添并加数据</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git checkout testing </span>
+Switched to branch <span style="color:#d14">&#39;testing&#39;</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># cat aa	# testing 分支里的aa是没有数据的</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># echo testing &gt;&gt; aa</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git commit -am &#34;testing add data to aa&#34;</span>
+<span style="color:#000;font-weight:bold">[</span>testing ebddb9d<span style="color:#000;font-weight:bold">]</span> testing add data to aa
+ <span style="color:#099">1</span> file changed, <span style="color:#099">1</span> insertion<span style="color:#000;font-weight:bold">(</span>+<span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># cat aa</span>
+testing
+<span style="color:#998;font-style:italic"># 返回主分支</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git checkout master </span>
+Switched to branch <span style="color:#d14">&#39;master&#39;</span>
+<span style="color:#998;font-style:italic"># 合并分支</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git merge testing </span>
+Auto-merging aa
+CONFLICT <span style="color:#000;font-weight:bold">(</span>content<span style="color:#000;font-weight:bold">)</span>: Merge conflict in aa
+Automatic merge failed; fix conflicts and <span style="color:#000;font-weight:bold">then</span> commit the result.
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># cat aa </span>
+<span style="color:#000;font-weight:bold">&lt;&lt;&lt;&lt;&lt;&lt;</span>&lt; HEAD
+<span style="color:#008080">master</span>
+<span style="color:#000;font-weight:bold">=======</span>
+testing
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; testing
+<span style="color:#998;font-style:italic"># 冲突文件只能手动修改后再提交(使用: vim)</span>
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git commit -am &#34;merged testing branch&#34;</span>
+<span style="color:#000;font-weight:bold">[</span>master f88d003<span style="color:#000;font-weight:bold">]</span> merged testing
+<span style="color:#000;font-weight:bold">[</span>root@docker01 data<span style="color:#000;font-weight:bold">]</span><span style="color:#998;font-style:italic"># git status</span>
+On branch master
+nothing to commit, working tree clean
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-git的标签">3. git的标签</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git tag
+    -a, --annotate        annotated tag, needs a message
+    -m, --message &lt;message&gt;
+
+git tag -a v1.0 -m <span style="color:#d14">&#34;add new tag&#34;</span>
+git tag -a v1.1 7983d83 -m <span style="color:#d14">&#34;tag v1.1 add data&#34;</span>
+
+<span style="color:#998;font-style:italic"># 查看标签</span>
+git tag
+
+<span style="color:#998;font-style:italic"># 查看该标签上的操作</span>
+git show v1.0
+
+<span style="color:#998;font-style:italic"># 通过标签便于回滚数据</span>
+git reset --hard v1.0
+
+git tag -d v1.0
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-github的使用">4. GitHub的使用</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">添加remote
+git remote add origin git@github.com:....
+
+<span style="color:#998;font-style:italic"># 查看</span>
+git remote
+
+git push -u origin master
+	-u, --set-upstream    <span style="color:#0086b3">set</span> upstream <span style="color:#000;font-weight:bold">for</span> git pull/status
+
+
+git clone git@github.com:....
+ 
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="gitlab">gitlab</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+cat &gt;/etc/yum.repos.d/gitlab-ce.repo<span style="color:#d14">&lt;&lt;EOF
+</span><span style="color:#d14">[gitlab-ce]
+</span><span style="color:#d14">name=Gitlab CE Repository
+</span><span style="color:#d14">baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el$releasever/
+</span><span style="color:#d14">gpgcheck=0
+</span><span style="color:#d14">enabled=1
+</span><span style="color:#d14">EOF</span>
+
+sudo dnf install -y curl policycoreutils openssh-server
+
+
+Thank you <span style="color:#000;font-weight:bold">for</span> installing GitLab!
+GitLab was unable to detect a valid hostname <span style="color:#000;font-weight:bold">for</span> your instance.
+Please configure a URL <span style="color:#000;font-weight:bold">for</span> your GitLab instance by setting <span style="color:#d14">`</span>external_url<span style="color:#d14">`</span>
+configuration in /etc/gitlab/gitlab.rb file.
+Then, you can start your GitLab instance by running the following command:
+  sudo gitlab-ctl reconfigure
+
+For a comprehensive list of configuration options please see the Omnibus GitLab readme
+https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md
+
+
+<span style="color:#998;font-style:italic"># 安装目录</span>
+/opt/gitlab/
+<span style="color:#998;font-style:italic"># 存放数据的目录</span>
+/var/opt/gitlab
+<span style="color:#998;font-style:italic"># 存放仓库数据</span>
+/var/opt/gitlab/git-data
+
+gitlab-ctl reconfigure
+gitlab-ctl status
+gitlab-ctl stop
+gitlab-ctl stop nginx
+gitlab-ctl tail
+
+git remote rename origin old-origin
+git remote add origin ...
+git push -u origin master
+git push -u origin --all
+git push -u origin --tags
+
+
+<span style="color:#998;font-style:italic"># 切换并上传dev组</span>
+git checkout -b dev
+git add .
+git commit -m <span style="color:#d14">&#34;dev add new file&#34;</span>
+git push -u origin dev
+
+<span style="color:#998;font-style:italic"># 拉取最新数据</span>
+git pull
+
+<span style="color:#998;font-style:italic"># 写新项目时一定要先删除支分支,再创建新分支后,再写,更新最新数据</span>
+git branck -d dev
+git pull
+git checkout -b dev
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="jenkins的使用">jenkins的使用</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">90
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run ^
+  -u root ^
+  --rm ^
+  -d ^
+  -p 8080:8080 ^
+  -p 50000:50000 ^
+  -v jenkins-data:/var/jenkins_home ^
+  -v /var/run/docker.sock:/var/run/docker.sock ^
+  jenkinsci/blueocean
+
+
+<span style="color:#998;font-style:italic"># Jenkins需要JDK作为runtime</span>
+dnf install java-1.8.0-openjdk.x86_64
+dnf localinstall jenkins-2.235.1-1.1.noarch.rpm
+
+<span style="color:#998;font-style:italic"># 就该Jenkins权限</span>
+vim /etc/sysconfig/jenkins
+<span style="color:#008080">JENKINS_USER</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;root&#34;</span> 
+chown -R root. /var/lib/jenkins
+chown -R root. /var/cache/jenkins
+chown -R root. /var/log/jenkins
+
+
+<span style="color:#998;font-style:italic"># 将plugins.tar.gz移动到该目录下解压</span>
+/var/lib/jenkins
+
+
+/var/lib/jenkins/users
+
+
+<span style="color:#998;font-style:italic">#!/bin/bash</span>
+<span style="color:#008080">CODE_DIR</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/srv/&#34;</span>  <span style="color:#998;font-style:italic"># /var/lib/jenkins/workspace/freestyle-job</span>
+<span style="color:#008080">WEB_DIR</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/srv/vol&#34;</span>
+<span style="color:#008080">IP</span><span style="color:#000;font-weight:bold">=</span>10.0.0.8
+<span style="color:#008080">TIME</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">`</span>date +%F-%H-%M-%S<span style="color:#d14">`</span>
+<span style="color:#008080">DATA_DIR</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;web-</span><span style="color:#d14">${</span><span style="color:#008080">TIME</span><span style="color:#d14">}</span><span style="color:#d14">&#34;</span>
+<span style="color:#008080">TAR_DATA</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;</span><span style="color:#d14">${</span><span style="color:#008080">DATA_DIR</span><span style="color:#d14">}</span><span style="color:#d14">.tar.gz&#34;</span>
+
+<span style="color:#0086b3">cd</span> <span style="color:#008080">$CODE_DIR</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> tar czf /tmp/<span style="color:#d14">${</span><span style="color:#008080">TAR_DATA</span><span style="color:#d14">}</span> ./
+scp /tmp/<span style="color:#d14">${</span><span style="color:#008080">TAR_DATA</span><span style="color:#d14">}</span> <span style="color:#008080">$IP</span>:<span style="color:#d14">${</span><span style="color:#008080">WEB_DIR</span><span style="color:#d14">}</span>
+ssh root@<span style="color:#008080">$IP</span> <span style="color:#d14">&#34;cd </span><span style="color:#d14">${</span><span style="color:#008080">WEB_DIR</span><span style="color:#d14">}</span><span style="color:#d14"> &amp;&amp; mkdir </span><span style="color:#d14">${</span><span style="color:#008080">DATA_DIR</span><span style="color:#d14">}</span><span style="color:#d14">&#34;</span>
+ssh root@<span style="color:#008080">$IP</span> <span style="color:#d14">&#34;cd </span><span style="color:#d14">${</span><span style="color:#008080">WEB_DIR</span><span style="color:#d14">}</span><span style="color:#d14"> &amp;&amp; tar -C </span><span style="color:#d14">${</span><span style="color:#008080">DATA_DIR</span><span style="color:#d14">}</span><span style="color:#d14">/ -xf </span><span style="color:#d14">${</span><span style="color:#008080">TAR_DATA</span><span style="color:#d14">}</span><span style="color:#d14"> &amp;&amp; rm -f </span><span style="color:#d14">${</span><span style="color:#008080">TAR_DATA</span><span style="color:#d14">}</span><span style="color:#d14">&#34;</span>
+ssh root@<span style="color:#008080">$IP</span> <span style="color:#d14">&#34;cd </span><span style="color:#d14">${</span><span style="color:#008080">WEB_DIR</span><span style="color:#d14">}</span><span style="color:#d14"> &amp;&amp; rm -rf html &amp;&amp; ln -s </span><span style="color:#d14">${</span><span style="color:#008080">DATA_DIR</span><span style="color:#d14">}</span><span style="color:#d14"> html&#34;</span>
+
+
+ssh-copy-id -i .ssh/ root@10.0.0.8
+
+<span style="color:#998;font-style:italic"># jenkins项目设置</span>
+1. 丢弃的构建
+    保持天数5-7天
+    构建的最大数5-7个
+
+2. 源码管理
+git
+repository url: git@10.0.0.13:test/dzp.git
+把本机的秘钥对配置到Credentials中
+cat .ssh/id_rsa
+
+3. <span style="color:#998;font-style:italic"># 设置gitlab触发器</span>
+Build when a change is pushed to GitLab. GitLab webhook URL: http://10.0.0.8:8080/project/freestyle-job
+
+产生token,拿着该token到gitlab下的相关项目下配置web hook
+
+4. 构建后操作
+publish build status to gitlab
+
+<span style="color:#998;font-style:italic"># gitlab配置</span>
+1. 获取gitlab设置中的access token,选中api,拿到产生的token到Jenkins设置中进行配置
+以达到双向调用
+
+<span style="color:#998;font-style:italic"># 脚本测试(在Jenkins服务器本地用docker开Nginx)</span>
+<span style="color:#998;font-style:italic">#!/bin/bash</span>
+<span style="color:#008080">CODE_DIR</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/var/lib/jenkins/workspace/freestyle-job&#34;</span>
+<span style="color:#008080">WEB_DIR</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/srv/vol&#34;</span>
+<span style="color:#008080">TIME</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">`</span>date +%F-%H-%M-%S<span style="color:#d14">`</span>
+<span style="color:#008080">DATA_DIR</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;web-</span><span style="color:#d14">${</span><span style="color:#008080">TIME</span><span style="color:#d14">}</span><span style="color:#d14">&#34;</span>
+<span style="color:#008080">TAR_DATA</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;</span><span style="color:#d14">${</span><span style="color:#008080">DATA_DIR</span><span style="color:#d14">}</span><span style="color:#d14">.tar.gz&#34;</span>
+
+<span style="color:#0086b3">cd</span> <span style="color:#008080">$CODE_DIR</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> tar czf <span style="color:#d14">${</span><span style="color:#008080">WEB_DIR</span><span style="color:#d14">}</span>/<span style="color:#d14">${</span><span style="color:#008080">TAR_DATA</span><span style="color:#d14">}</span> ./
+<span style="color:#0086b3">cd</span> <span style="color:#d14">${</span><span style="color:#008080">WEB_DIR</span><span style="color:#d14">}</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> mkdir <span style="color:#d14">${</span><span style="color:#008080">DATA_DIR</span><span style="color:#d14">}</span>
+<span style="color:#0086b3">cd</span> <span style="color:#d14">${</span><span style="color:#008080">WEB_DIR</span><span style="color:#d14">}</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> tar -C <span style="color:#d14">${</span><span style="color:#008080">DATA_DIR</span><span style="color:#d14">}</span>/ -xf <span style="color:#d14">${</span><span style="color:#008080">TAR_DATA</span><span style="color:#d14">}</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> rm -f <span style="color:#d14">${</span><span style="color:#008080">TAR_DATA</span><span style="color:#d14">}</span>
+<span style="color:#0086b3">cd</span> <span style="color:#d14">${</span><span style="color:#008080">WEB_DIR</span><span style="color:#d14">}</span> <span style="color:#000;font-weight:bold">&amp;&amp;</span> rm -rf html <span style="color:#000;font-weight:bold">&amp;&amp;</span> ln -s <span style="color:#d14">${</span><span style="color:#008080">DATA_DIR</span><span style="color:#d14">}</span> html
+docker container restart nginx
+
+docker run -d --name nginx -p 80:80 -v /srv/vol/html:/usr/share/nginx/html/ nginx
+
+<span style="color:#099">626</span> 18:00
+
+
+
+</code></pre></td></tr></table>
+</div>
+</div>
+        </div>
+
+        
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/linux-CMD/">Linux CMD</a></li>
+        
+        <li><a href="/posts/my-second-post/">My Second Post</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='/tags/Git'>Git</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2020 <a href="https://jixinliang.github.io">Jixinliang&#39;s Blog By Jixinlinag</a>.
+        本站博客未经授权禁止转载. Powered by <a href="https://gohugo.io/" target="_black" rel="nofollow"><span class="badge-value bg-blue">Hugo</span></a>
+        & <a href="https://github.com/flysnow-org/maupassant-hugo" target="_black"><span class="badge-value bg-yellowgreen">Maupassant</span></a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/post_category.js'></script>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://jixinliang.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://jixinliang.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://jixinliang.github.io/posts/git-basement/" title="Git的基础操作">Git的基础操作</a>
+    </li>
+    
+    <li>
+        <a href="https://jixinliang.github.io/posts/linux-CMD/" title="Linux CMD">Linux CMD</a>
+    </li>
+    
+    <li>
+        <a href="https://jixinliang.github.io/posts/my-second-post/" title="My Second Post">My Second Post</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="https://jixinliang.github.io/categories/Git/">Git (1)</a></li>
+    
+    <li><a href="https://jixinliang.github.io/categories/Linux/">Linux (1)</a></li>
+    
+    <li><a href="https://jixinliang.github.io/categories/Math/">Math (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="https://jixinliang.github.io/tags/Git/">Git</a>
+    
+    <a href="https://jixinliang.github.io/tags/Linux/">Linux</a>
+    
+    <a href="https://jixinliang.github.io/tags/Math/">Math</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://jixinliang.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
