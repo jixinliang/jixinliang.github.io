@@ -35,8 +35,6 @@
     
     
     
-        <link rel="stylesheet" href='/css/'>
-    
 </head>
 
 
@@ -75,13 +73,14 @@
                 <div class="col-8" id="main">
                     
 <div class="res-cons">
-    <style>
+    
+<style>
     #sideToolbar {
         position: fixed;
-        bottom: 300px;
-        right: 5px;
+        bottom: 280px;
+        right: 8px;
         width: 240px;
-        height: 240px;
+        height: 240px
     }
 
     #sideCatalog {
@@ -171,7 +170,7 @@
     }
 
     #sideCatalogBtn:hover {
-        background: url("/images/menu_a.svg") no-repeat center center;
+        background: url("/images/menu_hard.svg") no-repeat center center;
         background-size: contain;
     }
 
@@ -208,68 +207,26 @@
     }
 </style>
 
-<div id="sideToolbar">
-    <div class="sideCatalogBg" id="sideCatalog">
-        <div id="sideCatalog-catalog">
-            <ul class="nav">
-                <li>
-                    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#a">A</a></li>
-    <li><a href="#b">B</a></li>
-    <li><a href="#c">C</a></li>
-    <li><a href="#d">D</a></li>
-    <li><a href="#e">E</a></li>
-    <li><a href="#f">F</a></li>
-    <li><a href="#g">G</a></li>
-    <li><a href="#h">H</a></li>
-    <li><a href="#i">I</a></li>
-    <li><a href="#j">J</a></li>
-    <li><a href="#k">K</a></li>
-    <li><a href="#l">L</a></li>
-    <li><a href="#m">M</a></li>
-    <li><a href="#n">N</a></li>
-    <li><a href="#o">O</a></li>
-    <li><a href="#p">P</a></li>
-    <li><a href="#q">Q</a></li>
-    <li><a href="#r">R</a></li>
-    <li><a href="#s">S</a></li>
-    <li><a href="#t">T</a></li>
-    <li><a href="#u">U</a></li>
-    <li><a href="#v">V</a></li>
-    <li><a href="#w">W</a></li>
-    <li><a href="#x">X</a></li>
-    <li><a href="#y">Y</a></li>
-    <li><a href="#z">Z</a></li>
-  </ul>
-</nav>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <a id="sideCatalogBtn"></a>
-</div>
 
-<script>
-    var a = $(document);
+<script type="text/javascript">
+    let a = $(document);
     a.ready(function () {
-        var b = $('body'), d = 'sideToolbar', e = 'sideCatalog', f = 'sideCatalog-catalog', g = 'sideCatalogBtn',
-            i = '<div id="sideToolbar" style="display:none;">\<div class="sideCatalogBg" id="sideCatalog" style="visibility: visible;">\<div id="sideCatalog-catalog">\<ul class="nav" style="width:225px;zoom:1">\</ul>\</div>\</div>\<a href="javascript:void(0);" id="sideCatalogBtn" class="sideCatalogBtnDisable"></a>\</div>',
+        let b = $('body'), d = 'sideToolbar', e = 'sideCatalog', f = 'sideCatalog-catalog', g = 'sideCatalogBtn',
+            i = '<div id="sideToolbar" style="display:block;">\<div class="sideCatalogBg" id="sideCatalog" style="visibility: visible;">\<div id="sideCatalog-catalog">\<ul class="nav" style="width:225px;zoom:1">\</ul>\</div>\</div>\<a href="javascript:void(0);" id="sideCatalogBtn" class="sideCatalogBtnDisable"></a>\</div>',
             j = '', k = 200, l = 0, m = 0, n = 0, q = true, r = true, s = b;
         if (s.length === 0) {
             return
-        }
-        ;
+        };
         if (location.href.indexOf("post") < 0) {
             return
-        }
-        ;b.append(i);
+        };
+        b.append(i);
         o = $('.post-content').find('h1,h2,h3');
         o.each(function (t) {
-            var u = $(this), v = u[0];
-            var title = u.text();
-            var text = u.text();
-            u.attr('id', 'autoid-' + l + '-' + m + '-' + n)
+            let u = $(this), v = u[0];
+            let title = u.text();
+            let text = u.text();
+            u.attr('id', 'autoId-' + l + '-' + m + '-' + n)
             if (v.localName === 'h1') {
                 l++;
                 m = 0;
@@ -304,7 +261,7 @@
         });
         $sideToolbar = $('#' + d);
         a.on('scroll', function () {
-            var t = a.scrollTop();
+            let t = a.scrollTop();
             if (t > k) {
                 $sideToolbar.css('display', 'block');
             } else {
@@ -313,6 +270,7 @@
         })
     });
 </script>
+
     <article class="post">
         <header>
             <h1 class="post-title">Linux CMD</h1>
@@ -330,11 +288,14 @@
         
         
         <div class="post-meta">
-            <span id="busuanzi_container_page_pv">| <span id="busuanzi_value_page_pv"></span><span>
-                    阅读</span></span>
+            <span id="busuanzi_container_page_pv">|
+                <span>本文共阅读</span>
+                <span id="busuanzi_value_page_pv"></span>
+                <span>次</span>
+            </span>
         </div>
         
-        
+
         <div class="post-content">
             <h1 id="linux-常用命令排序版">Linux 常用命令排序版</h1>
 <h2 id="a">A</h2>
@@ -2616,8 +2577,6 @@ Error: This <span style="color:#0086b3">command</span> has to be run under the r
 
 
 
-
-    <script src='/js/'></script>
 
                 </div>
 

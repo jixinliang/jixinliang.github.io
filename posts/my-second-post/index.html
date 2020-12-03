@@ -35,8 +35,6 @@
     
     
     
-        <link rel="stylesheet" href='/css/'>
-    
 </head>
 
 
@@ -75,13 +73,14 @@
                 <div class="col-8" id="main">
                     
 <div class="res-cons">
-    <style>
+    
+<style>
     #sideToolbar {
         position: fixed;
-        bottom: 300px;
-        right: 5px;
+        bottom: 280px;
+        right: 8px;
         width: 240px;
-        height: 240px;
+        height: 240px
     }
 
     #sideCatalog {
@@ -171,7 +170,7 @@
     }
 
     #sideCatalogBtn:hover {
-        background: url("/images/menu_a.svg") no-repeat center center;
+        background: url("/images/menu_hard.svg") no-repeat center center;
         background-size: contain;
     }
 
@@ -208,43 +207,26 @@
     }
 </style>
 
-<div id="sideToolbar">
-    <div class="sideCatalogBg" id="sideCatalog">
-        <div id="sideCatalog-catalog">
-            <ul class="nav">
-                <li>
-                    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#罗马字母">罗马字母</a></li>
-  </ul>
-</nav>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <a id="sideCatalogBtn"></a>
-</div>
 
-<script>
-    var a = $(document);
+<script type="text/javascript">
+    let a = $(document);
     a.ready(function () {
-        var b = $('body'), d = 'sideToolbar', e = 'sideCatalog', f = 'sideCatalog-catalog', g = 'sideCatalogBtn',
-            i = '<div id="sideToolbar" style="display:none;">\<div class="sideCatalogBg" id="sideCatalog" style="visibility: visible;">\<div id="sideCatalog-catalog">\<ul class="nav" style="width:225px;zoom:1">\</ul>\</div>\</div>\<a href="javascript:void(0);" id="sideCatalogBtn" class="sideCatalogBtnDisable"></a>\</div>',
+        let b = $('body'), d = 'sideToolbar', e = 'sideCatalog', f = 'sideCatalog-catalog', g = 'sideCatalogBtn',
+            i = '<div id="sideToolbar" style="display:block;">\<div class="sideCatalogBg" id="sideCatalog" style="visibility: visible;">\<div id="sideCatalog-catalog">\<ul class="nav" style="width:225px;zoom:1">\</ul>\</div>\</div>\<a href="javascript:void(0);" id="sideCatalogBtn" class="sideCatalogBtnDisable"></a>\</div>',
             j = '', k = 200, l = 0, m = 0, n = 0, q = true, r = true, s = b;
         if (s.length === 0) {
             return
-        }
-        ;
+        };
         if (location.href.indexOf("post") < 0) {
             return
-        }
-        ;b.append(i);
+        };
+        b.append(i);
         o = $('.post-content').find('h1,h2,h3');
         o.each(function (t) {
-            var u = $(this), v = u[0];
-            var title = u.text();
-            var text = u.text();
-            u.attr('id', 'autoid-' + l + '-' + m + '-' + n)
+            let u = $(this), v = u[0];
+            let title = u.text();
+            let text = u.text();
+            u.attr('id', 'autoId-' + l + '-' + m + '-' + n)
             if (v.localName === 'h1') {
                 l++;
                 m = 0;
@@ -279,7 +261,7 @@
         });
         $sideToolbar = $('#' + d);
         a.on('scroll', function () {
-            var t = a.scrollTop();
+            let t = a.scrollTop();
             if (t > k) {
                 $sideToolbar.css('display', 'block');
             } else {
@@ -288,6 +270,7 @@
         })
     });
 </script>
+
     <article class="post">
         <header>
             <h1 class="post-title">My Second Post</h1>
@@ -305,11 +288,14 @@
         
         
         <div class="post-meta">
-            <span id="busuanzi_container_page_pv">| <span id="busuanzi_value_page_pv"></span><span>
-                    阅读</span></span>
+            <span id="busuanzi_container_page_pv">|
+                <span>本文共阅读</span>
+                <span id="busuanzi_value_page_pv"></span>
+                <span>次</span>
+            </span>
         </div>
         
-        
+
         <div class="post-content">
             <h2 id="罗马字母">罗马字母</h2>
 <p>Α α：阿尔法 Alpha
@@ -586,8 +572,6 @@
 
 
 
-
-    <script src='/js/'></script>
 
                 </div>
 
